@@ -1,4 +1,4 @@
-.PHONY: help install dev build test test-coverage test-e2e lint format docker-build docker-up docker-down clean crawler-install crawler-test crawler-discover crawler-crawl crawler-scrape crawler-analyze
+.PHONY: help install dev build test test-coverage test-e2e lint format docker-build docker-up docker-down clean crawler-install crawler-test crawler-discover crawler-crawl update-data
 
 # Default target
 help:
@@ -14,13 +14,11 @@ help:
 	@echo "  make lint            - Run ESLint"
 	@echo "  make format          - Format code with Prettier"
 	@echo ""
-	@echo "Crawler:"
+	@echo "Crawler & Data:"
 	@echo "  make crawler-install - Install crawler dependencies"
 	@echo "  make crawler-test    - Test crawler functionality"
-	@echo "  make crawler-discover- Discover API endpoints"
 	@echo "  make crawler-crawl   - Crawl using API endpoints"
-	@echo "  make crawler-scrape  - Scrape website data"
-	@echo "  make crawler-analyze - Run full analysis"
+	@echo "  make update-data     - Fetch latest data & generate JSON"
 	@echo ""
 	@echo "Docker:"
 	@echo "  make docker-build    - Build Docker images"
@@ -91,30 +89,25 @@ docker-logs:
 # Crawler commands
 crawler-install:
 	@echo "🐍 Installing crawler dependencies..."
-	cd backend/crawler && pip install -r requirements.txt
-	@echo "🎭 Installing Playwright browsers..."
-	playwright install chromium
+	cd backend/crawler && pip3 install -r requirements.txt
 	@echo "✅ Crawler dependencies installed!"
 
 crawler-test:
 	@echo "🧪 Testing crawler..."
-	cd backend && python crawler/test_crawler.py
+	cd backend && python3 crawler/test_crawler.py
 
 crawler-discover:
 	@echo "🔍 Discovering API endpoints..."
-	cd backend && python -m crawler.cli discover
+	cd backend && python3 -m crawler.cli discover
 
 crawler-crawl:
 	@echo "📡 Crawling API endpoints..."
-	cd backend && python -m crawler.cli crawl
+	cd backend && python3 -m crawler.cli crawl
 
-crawler-scrape:
-	@echo "🕷️  Scraping website..."
-	cd backend && python -m crawler.cli scrape
-
-crawler-analyze:
-	@echo "🔬 Running full analysis..."
-	cd backend && python -m crawler.cli analyze
+update-data:
+	@echo "📊 Fetching latest PSX data and generating JSON..."
+	cd backend && python3 -m crawler.json_generator
+	@echo "✅ Data updated! Check frontend/public/data/"
 
 # Clean
 clean:

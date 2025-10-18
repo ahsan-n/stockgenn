@@ -1,0 +1,187 @@
+{
+  "lastUpdated": "2025-10-18T17:02:17.792320",
+  "sector": "CEMENT",
+  "totalCompanies": 24,
+  "companies": [
+    {
+      "symbol": "BWCL",
+      "name": "Bestway Cement Limited",
+      "isGEM": false,
+      "currentPrice": 622.2,
+      "change": 1.24,
+      "changePercent": 0.2,
+      "volume": 16795,
+      "high": 620,
+      "lastUpdated": "2025-10-17"
+    },
+    {
+      "symbol": "CHCC",
+      "name": "Cherat Cement Company Limited",
+      "isGEM": false,
+      "currentPrice": 339.94,
+      "change": -5.08,
+      "changePercent": -1.47,
+      "volume": 243125,
+      "high": 346,
+      "lastUpdated": "2025-10-17"
+    },
+    {
+      "symbol": "ACPL",
+      "name": "Attock Cement Pakistan Limited",
+      "isGEM": false,
+      "currentPrice": 290.97,
+      "change": -3.44,
+      "changePercent": -1.17,
+      "volume": 136253,
+      "high": 295,
+      "lastUpdated": "2025-10-17"
+    },
+    {
+      "symbol": "DGKC",
+      "name": "D.G. Khan Cement Company Limited",
+      "isGEM": false,
+      "currentPrice": 241.27,
+      "change": -2.9,
+      "changePercent": -1.19,
+      "volume": 4310094,
+      "high": 244,
+      "lastUpdated": "2025-10-17"
+    },
+    {
+      "symbol": "FECTC",
+      "name": "Fecto Cement Limited",
+      "isGEM": false,
+      "currentPrice": 104.31,
+      "change": -0.09,
+      "changePercent": -0.09,
+      "volume": 39596,
+      "high": 104.1,
+      "lastUpdated": "2025-10-17"
+    },
+    {
+      "symbol": "FCCL",
+      "name": "Fauji Cement Company Limited",
+      "isGEM": false,
+      "currentPrice": 57.4,
+      "change": 0.21,
+      "changePercent": 0.37,
+      "volume": 6677189,
+      "high": 57.42,
+      "lastUpdated": "2025-10-17"
+    },
+    {
+      "symbol": "FLYNG",
+      "name": "Flying Cement Company Limited",
+      "isGEM": false,
+      "currentPrice": 44.47,
+      "change": -0.68,
+      "changePercent": -1.51,
+      "volume": 362243,
+      "high": 46,
+      "lastUpdated": "2025-10-17"
+    },
+    {
+      "symbol": "DNCC",
+      "name": "Dandot Cement Company Limited",
+      "isGEM": false,
+      "currentPrice": 15.89,
+      "change": 0.0,
+      "changePercent": 0.0,
+      "volume": 187,
+      "high": 16.26,
+      "lastUpdated": "2025-10-17"
+    },
+    {
+      "symbol": "DCL",
+      "name": "Dewan Cement Limited",
+      "isGEM": false,
+      "currentPrice": 14.29,
+      "change": 0.33,
+      "changePercent": 2.36,
+      "volume": 4323537,
+      "high": 13.8,
+      "lastUpdated": "2025-10-17"
+    },
+    {
+      "symbol": "DBCI",
+      "name": "Dadabhoy Cement Industries Limited",
+      "isGEM": false,
+      "currentPrice": 7.14,
+      "change": -0.11,
+      "changePercent": -1.52,
+      "volume": 79357,
+      "high": 7.45,
+      "lastUpdated": "2025-10-17"
+    },
+    {
+      "symbol": "FLYNGR1",
+      "name": "Flying Cement(R)",
+      "isGEM": false
+    },
+    {
+      "symbol": "GWLC",
+      "name": "Gharibwal Cement Limited",
+      "isGEM": false
+    },
+    {
+      "symbol": "JVDCR1",
+      "name": "",
+      "isGEM": false
+    },
+    {
+      "symbol": "KOHC",
+      "name": "Kohat Cement Company Limited",
+      "isGEM": false
+    },
+    {
+      "symbol": "LPCL",
+      "name": "Lafarge Pakistan Cement Limited",
+      "isGEM": false
+    },
+    {
+      "symbol": "LUCK",
+      "name": "Lucky Cement Limited",
+      "isGEM": false
+    },
+    {
+      "symbol": "MLCF",
+      "name": "Maple Leaf Cement Factory Limited",
+      "isGEM": false
+    },
+    {
+      "symbol": "PAKCEM",
+      "name": "Pakcem Limited",
+      "isGEM": false
+    },
+    {
+      "symbol": "PIOC",
+      "name": "Pioneer Cement Limited",
+      "isGEM": false
+    },
+    {
+      "symbol": "POWER",
+      "name": "Power Cement Limited",
+      "isGEM": false
+    },
+    {
+      "symbol": "POWERPS",
+      "name": "Power Cement (Pref)",
+      "isGEM": false
+    },
+    {
+      "symbol": "SMCPL",
+      "name": "Safe Mix Concrete Limited",
+      "isGEM": false
+    },
+    {
+      "symbol": "THCCL",
+      "name": "Thatta Cement Company Limited",
+      "isGEM": false
+    },
+    {
+      "symbol": "ZELP",
+      "name": "Zeal Pak Cement Factory Limited",
+      "isGEM": false
+    }
+  ]
+}
