@@ -4,9 +4,11 @@ A comprehensive analytical platform for Pakistan Stock Exchange (PSX) with focus
 
 ## 🎯 Project Scope
 
-- **Complete Frontend Implementation**
-- **Cement Sector Analysis**
-- **Company Financial Statements**
+- **Complete Frontend Implementation** ✅
+- **Data Crawler for PSX** ✅
+- **Cement Sector Analysis** (In Progress)
+- **Company Financial Statements** (Planned)
+- **Real-time Data Integration** (Planned)
 
 ## 📋 Development Rules
 
@@ -19,10 +21,24 @@ See [AGENTS.md](./AGENTS.md) for complete development guidelines including:
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React/Next.js
+### Frontend
+- **Framework**: Next.js 15 with React 19
 - **Language**: TypeScript
-- **Testing**: Jest, React Testing Library, Playwright/Cypress
-- **API**: OpenAPI 3.0+ compliant
+- **Styling**: Tailwind CSS
+- **Charts**: Recharts, Nivo, Tremor
+- **Testing**: Jest, React Testing Library, Playwright
+
+### Backend
+- **Crawler**: Python with asyncio
+- **Web Scraping**: Playwright
+- **Data Processing**: Pandas, Pydantic
+- **API**: FastAPI (Planned)
+- **Database**: PostgreSQL + TimescaleDB (Planned)
+
+### Infrastructure
+- **Containerization**: Docker, Docker Compose
+- **Build Tool**: Make
+- **API Spec**: OpenAPI 3.0+
 
 ## 🚀 Getting Started
 
@@ -76,24 +92,60 @@ make lint
 make format
 ```
 
+### Data Crawler
+
+```bash
+# Install crawler dependencies
+make crawler-install
+
+# Test crawler functionality
+make crawler-test
+
+# Discover API endpoints
+make crawler-discover
+
+# Crawl using APIs
+make crawler-crawl
+
+# Scrape website data
+make crawler-scrape
+
+# Run full analysis
+make crawler-analyze
+```
+
 ## 📁 Project Structure
 
 ```
 stockgenn/
-├── frontend/          # Next.js frontend application
-│   ├── src/          # Source code
-│   ├── e2e/          # E2E tests
-│   ├── public/       # Static assets
-│   └── Dockerfile    # Frontend container
-├── backend/           # Backend API (future)
-├── infrastructure/    # IaC configs (future)
-├── docs/             # Documentation
-│   └── RESEARCH.md   # Design research
-├── .cursor/          # Cursor AI rules
-├── docker-compose.yml # Multi-service orchestration
-├── Makefile          # Development commands
-├── AGENTS.md         # Development guidelines
-└── README.md         # This file
+├── frontend/                    # Next.js frontend application
+│   ├── src/
+│   │   ├── app/                # Next.js app directory
+│   │   ├── components/         # React components
+│   │   ├── lib/                # Utility functions
+│   │   ├── types/              # TypeScript types
+│   │   └── data/               # Mock data
+│   ├── e2e/                    # E2E tests (Playwright)
+│   ├── public/                 # Static assets
+│   └── Dockerfile              # Frontend container
+├── backend/
+│   └── crawler/                # PSX data crawler
+│       ├── psx_crawler.py      # API-based crawler
+│       ├── psx_scraper.py      # Web scraper (Playwright)
+│       ├── models.py           # Data models
+│       ├── config.py           # Configuration
+│       ├── cli.py              # Command-line interface
+│       └── README.md           # Crawler documentation
+├── docs/                       # Documentation
+│   ├── PSX_API_ANALYSIS.md     # API analysis
+│   ├── DATA_PERSISTENCE_STRATEGY.md  # Database strategy
+│   ├── IMPLEMENTATION_SUMMARY.md     # Frontend summary
+│   └── TESTING_SUMMARY.md      # Test coverage report
+├── .cursor/                    # Cursor AI rules
+├── docker-compose.yml          # Multi-service orchestration
+├── Makefile                    # Development commands
+├── AGENTS.md                   # Development guidelines
+└── README.md                   # This file
 ```
 
 ## 🧪 Testing
@@ -117,9 +169,28 @@ This project maintains 100% test coverage. All features must include:
 
 [To be determined]
 
+## 📚 Documentation
+
+- **[Development Rules](./AGENTS.md)** - Complete development guidelines
+- **[PSX API Analysis](./docs/PSX_API_ANALYSIS.md)** - API endpoints and data structures
+- **[Data Persistence Strategy](./docs/DATA_PERSISTENCE_STRATEGY.md)** - Database design and strategy
+- **[Crawler README](./backend/crawler/README.md)** - Crawler usage and configuration
+- **[Implementation Summary](./docs/IMPLEMENTATION_SUMMARY.md)** - Frontend implementation details
+- **[Testing Summary](./docs/TESTING_SUMMARY.md)** - Test coverage report
+
 ## 🔗 Links
 
-- [Development Rules](./AGENTS.md)
+- [Pakistan Stock Exchange](https://dps.psx.com.pk/)
 - [GitHub Issues](#) - To be added
 - [API Documentation](#) - To be added
+
+## ⚠️ Legal Notice
+
+This project uses data from Pakistan Stock Exchange (PSX). Please note:
+
+> "Any dissemination, transmission, sale, and commercial use of Market Data feed... without acquiring respective rights/license from the PSX is strictly prohibited."
+
+For official data access, contact: marketdatarequest@psx.com.pk
+
+This project is for educational and personal use only. For commercial use, please obtain proper licensing from PSX.
 
