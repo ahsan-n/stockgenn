@@ -26,33 +26,74 @@ See [AGENTS.md](./AGENTS.md) for complete development guidelines including:
 
 ## 🚀 Getting Started
 
+### Quick Start
+
 ```bash
-# Install dependencies
-npm install
+# Install frontend dependencies
+make install
 
-# Run development server
-npm run dev
-
-# Run tests
-npm test
-
-# Run E2E tests
-npm run test:e2e
+# Start development server
+make dev
 
 # Build for production
-npm run build
+make build
+```
+
+### Docker Deployment
+
+```bash
+# Build and start all services
+make docker-build
+make docker-up
+
+# View logs
+make docker-logs
+
+# Stop services
+make docker-down
+```
+
+### Testing
+
+```bash
+# Run unit tests
+make test
+
+# Run tests with coverage
+make test-coverage
+
+# Run E2E tests
+make test-e2e
+```
+
+### Code Quality
+
+```bash
+# Lint code
+make lint
+
+# Format code
+make format
 ```
 
 ## 📁 Project Structure
 
 ```
 stockgenn/
-├── .cursor/           # Cursor AI rules
-├── src/              # Source code
-├── tests/            # Unit tests
-├── e2e/              # E2E tests
-├── public/           # Static assets
-└── docs/             # Documentation
+├── frontend/          # Next.js frontend application
+│   ├── src/          # Source code
+│   ├── e2e/          # E2E tests
+│   ├── public/       # Static assets
+│   └── Dockerfile    # Frontend container
+├── backend/           # Backend API (future)
+├── infrastructure/    # IaC configs (future)
+├── docs/             # Documentation
+│   └── RESEARCH.md   # Design research
+├── .cursor/          # Cursor AI rules
+├── docker-compose.yml # Multi-service orchestration
+├── Makefile          # Development commands
+├── AGENTS.md         # Development guidelines
+└── README.md         # This file
 ```
 
 ## 🧪 Testing

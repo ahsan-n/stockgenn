@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: psx-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - psx-network
+
+  # Future services can be added here:
+  # backend:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #   container_name: psx-backend
+  #   ports:
+  #     - "8000:8000"
+  #   networks:
+  #     - psx-network
+
+networks:
+  psx-network:
+    driver: bridge
+
