@@ -1,0 +1,21 @@
+{
+  "timestamp": "2025-10-18T15:26:36.239985",
+  "results": {
+    "market_summary": {
+      "success": false,
+      "error": "API endpoint not found, HTML scraping needed"
+    },
+    "indices": {
+      "success": true,
+      "error": null
+    },
+    "sector_summary": {
+      "success": false,
+      "error": "API endpoint not found"
+    },
+    "companies_list": {
+      "success": false,
+      "error": "API endpoint not found"
+    }
+  }
+}

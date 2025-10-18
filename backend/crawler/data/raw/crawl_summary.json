@@ -1,0 +1,153 @@
+{
+  "timestamp": "2025-10-18T15:32:03.204732",
+  "results": {
+    "all_symbols": {
+      "success": true,
+      "error": null,
+      "metadata": {
+        "endpoint": "/symbols",
+        "total_symbols": 947,
+        "sectors": [
+          "BILLS AND BONDS",
+          "INV. BANKS / INV. COS. / SECURITIES COS.",
+          "SUGAR & ALLIED INDUSTRIES",
+          "TEXTILE SPINNING",
+          "SYNTHETIC & RAYON",
+          "COMMERCIAL BANKS",
+          "PHARMACEUTICALS",
+          "PAPER, BOARD & PACKAGING",
+          "EXCHANGE TRADED FUNDS",
+          "CEMENT",
+          "TEXTILE COMPOSITE",
+          "ENGINEERING",
+          "",
+          "INSURANCE",
+          "AUTOMOBILE PARTS & ACCESSORIES",
+          "FERTILIZER",
+          "CHEMICAL",
+          "AUTOMOBILE ASSEMBLER",
+          "TECHNOLOGY & COMMUNICATION",
+          "MISCELLANEOUS",
+          "POWER GENERATION & DISTRIBUTION",
+          "OIL & GAS MARKETING COMPANIES",
+          "FOOD & PERSONAL CARE PRODUCTS",
+          "TEXTILE WEAVING",
+          "JUTE",
+          "REFINERY",
+          "LEATHER & TANNERIES",
+          "MODARABAS",
+          "GLASS & CERAMICS",
+          "WOOLLEN",
+          "PROPERTY",
+          "CABLE & ELECTRICAL GOODS",
+          "TRANSPORT",
+          "LEASING COMPANIES",
+          "REAL ESTATE INVESTMENT TRUST",
+          "CLOSE - END MUTUAL FUND",
+          "TOBACCO",
+          "OIL & GAS EXPLORATION COMPANIES",
+          "VANASPATI & ALLIED INDUSTRIES"
+        ]
+      }
+    },
+    "eod_KSE100": {
+      "success": true,
+      "error": null,
+      "metadata": {
+        "endpoint": "/timeseries/eod/KSE100",
+        "symbol": "KSE100",
+        "data_points": 1238,
+        "date_range": "1238 days of history"
+      }
+    },
+    "eod_KSE30": {
+      "success": true,
+      "error": null,
+      "metadata": {
+        "endpoint": "/timeseries/eod/KSE30",
+        "symbol": "KSE30",
+        "data_points": 1238,
+        "date_range": "1238 days of history"
+      }
+    },
+    "eod_ALLSHR": {
+      "success": true,
+      "error": null,
+      "metadata": {
+        "endpoint": "/timeseries/eod/ALLSHR",
+        "symbol": "ALLSHR",
+        "data_points": 1238,
+        "date_range": "1238 days of history"
+      }
+    },
+    "eod_KMI30": {
+      "success": true,
+      "error": null,
+      "metadata": {
+        "endpoint": "/timeseries/eod/KMI30",
+        "symbol": "KMI30",
+        "data_points": 1238,
+        "date_range": "1238 days of history"
+      }
+    },
+    "eod_ACPL": {
+      "success": true,
+      "error": null,
+      "metadata": {
+        "endpoint": "/timeseries/eod/ACPL",
+        "symbol": "ACPL",
+        "data_points": 1235,
+        "date_range": "1235 days of history"
+      }
+    },
+    "eod_BWCL": {
+      "success": true,
+      "error": null,
+      "metadata": {
+        "endpoint": "/timeseries/eod/BWCL",
+        "symbol": "BWCL",
+        "data_points": 1231,
+        "date_range": "1231 days of history"
+      }
+    },
+    "eod_CHCC": {
+      "success": true,
+      "error": null,
+      "metadata": {
+        "endpoint": "/timeseries/eod/CHCC",
+        "symbol": "CHCC",
+        "data_points": 1237,
+        "date_range": "1237 days of history"
+      }
+    },
+    "eod_DBCI": {
+      "success": true,
+      "error": null,
+      "metadata": {
+        "endpoint": "/timeseries/eod/DBCI",
+        "symbol": "DBCI",
+        "data_points": 344,
+        "date_range": "344 days of history"
+      }
+    },
+    "eod_DCL": {
+      "success": true,
+      "error": null,
+      "metadata": {
+        "endpoint": "/timeseries/eod/DCL",
+        "symbol": "DCL",
+        "data_points": 1237,
+        "date_range": "1237 days of history"
+      }
+    },
+    "intraday_KSE100": {
+      "success": true,
+      "error": null,
+      "metadata": {
+        "endpoint": "/timeseries/int/KSE100",
+        "symbol": "KSE100",
+        "data_points": 1182
+      }
+    }
+  }
+}

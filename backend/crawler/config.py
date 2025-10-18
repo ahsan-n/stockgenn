@@ -37,16 +37,14 @@ class CrawlerConfig(BaseModel):
     log_level: str = Field(default="INFO", description="Logging level")
     log_file: str = Field(default="./logs/crawler.log", description="Log file path")
     
-    # API Endpoints (to be discovered)
+    # API Endpoints (WORKING - Confirmed Oct 18, 2025)
     api_endpoints: Dict[str, str] = Field(
         default_factory=lambda: {
-            "market_summary": "/api/market/summary",
-            "indices": "/api/market/indices",
-            "sector_summary": "/api/market/sector-summary",
-            "companies": "/api/companies/listing-status",
-            "trading_panel": "/api/market/trading-panel",
+            "symbols": "/symbols",  # All companies and instruments
+            "intraday": "/timeseries/int/{symbol}",  # Intraday data (real-time)
+            "eod": "/timeseries/eod/{symbol}",  # End-of-day historical data
         },
-        description="Known API endpoints"
+        description="Working API endpoints"
     )
     
     # Indices to track

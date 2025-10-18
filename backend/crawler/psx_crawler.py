@@ -351,6 +351,142 @@ class PSXCrawler:
             error="API endpoint not found"
         )
     
+    async def fetch_all_symbols(self) -> Optional[CrawlerResult]:
+        """
+        Fetch all symbols (companies and instruments) from PSX
+        
+        Returns:
+            CrawlerResult with all symbols data
+        """
+        logger.info("Fetching all symbols...")
+        
+        endpoint = "/symbols"
+        data = await self.fetch_url(endpoint)
+        
+        if data and "html" not in data and isinstance(data, list):
+            logger.success(f"Successfully fetched {len(data)} symbols")
+            
+            # Save raw data
+            self.save_json(data, "raw/all_symbols.json")
+            
+            # Group by sector
+            sectors = {}
+            for symbol in data:
+                sector = symbol.get("sectorName", "Unknown")
+                if sector not in sectors:
+                    sectors[sector] = []
+                sectors[sector].append(symbol)
+            
+            # Save sector groupings
+            self.save_json(sectors, "raw/symbols_by_sector.json")
+            
+            logger.info(f"Found {len(sectors)} unique sectors")
+            
+            return CrawlerResult(
+                success=True,
+                data_type="all_symbols",
+                data=data,
+                metadata={
+                    "endpoint": endpoint,
+                    "total_symbols": len(data),
+                    "sectors": list(sectors.keys())
+                }
+            )
+        
+        logger.error("Failed to fetch symbols")
+        return CrawlerResult(
+            success=False,
+            data_type="all_symbols",
+            error="Failed to fetch symbols"
+        )
+    
+    async def fetch_intraday_data(self, symbol: str) -> Optional[CrawlerResult]:
+        """
+        Fetch intraday (real-time) data for a symbol
+        
+        Args:
+            symbol: Symbol to fetch (e.g., KSE100, LUCK)
+            
+        Returns:
+            CrawlerResult with intraday data
+        """
+        logger.info(f"Fetching intraday data for {symbol}...")
+        
+        endpoint = f"/timeseries/int/{symbol}"
+        data = await self.fetch_url(endpoint)
+        
+        if data and "html" not in data and data.get("status") == 1:
+            logger.success(f"Successfully fetched intraday data for {symbol}")
+            
+            # Save raw data
+            self.save_json(data, f"raw/intraday_{symbol}.json")
+            
+            # Parse data
+            time_series = data.get("data", [])
+            
+            return CrawlerResult(
+                success=True,
+                data_type="intraday",
+                data=data,
+                metadata={
+                    "endpoint": endpoint,
+                    "symbol": symbol,
+                    "data_points": len(time_series)
+                }
+            )
+        
+        logger.warning(f"Failed to fetch intraday data for {symbol}")
+        return CrawlerResult(
+            success=False,
+            data_type="intraday",
+            error=f"Failed to fetch intraday data for {symbol}",
+            metadata={"symbol": symbol}
+        )
+    
+    async def fetch_eod_data(self, symbol: str) -> Optional[CrawlerResult]:
+        """
+        Fetch end-of-day historical data for a symbol
+        
+        Args:
+            symbol: Symbol to fetch (e.g., KSE100, LUCK)
+            
+        Returns:
+            CrawlerResult with EOD data
+        """
+        logger.info(f"Fetching EOD data for {symbol}...")
+        
+        endpoint = f"/timeseries/eod/{symbol}"
+        data = await self.fetch_url(endpoint)
+        
+        if data and "html" not in data and data.get("status") == 1:
+            logger.success(f"Successfully fetched EOD data for {symbol}")
+            
+            # Save raw data
+            self.save_json(data, f"raw/eod_{symbol}.json")
+            
+            # Parse data
+            time_series = data.get("data", [])
+            
+            return CrawlerResult(
+                success=True,
+                data_type="eod",
+                data=data,
+                metadata={
+                    "endpoint": endpoint,
+                    "symbol": symbol,
+                    "data_points": len(time_series),
+                    "date_range": f"{len(time_series)} days of history"
+                }
+            )
+        
+        logger.warning(f"Failed to fetch EOD data for {symbol}")
+        return CrawlerResult(
+            success=False,
+            data_type="eod",
+            error=f"Failed to fetch EOD data for {symbol}",
+            metadata={"symbol": symbol}
+        )
+    
     async def fetch_companies_list(self) -> Optional[CrawlerResult]:
         """
         Fetch list of all companies
@@ -433,32 +569,57 @@ class PSXCrawler:
     
     async def crawl_all(self) -> Dict[str, CrawlerResult]:
         """
-        Crawl all available data
+        Crawl all available data using working API endpoints
         
         Returns:
             Dictionary of crawler results
         """
-        logger.info("Starting comprehensive crawl...")
+        logger.info("Starting comprehensive crawl with working APIs...")
         
         results = {}
         
-        # Discover API endpoints first
-        await self.discover_api_endpoints()
+        # 1. Fetch all symbols first
+        logger.info("Step 1/4: Fetching all symbols...")
+        symbols_result = await self.fetch_all_symbols()
+        results["all_symbols"] = symbols_result
+        await asyncio.sleep(0.5)
         
-        # Fetch all data types
-        tasks = [
-            ("market_summary", self.fetch_market_summary()),
-            ("indices", self.fetch_indices_data()),
-            ("sector_summary", self.fetch_sector_summary()),
-            ("companies_list", self.fetch_companies_list()),
+        if not symbols_result.success:
+            logger.error("Failed to fetch symbols, aborting")
+            return results
+        
+        # 2. Fetch indices data
+        logger.info("Step 2/4: Fetching indices data...")
+        indices_to_fetch = ["KSE100", "KSE30", "ALLSHR", "KMI30"]
+        
+        for index in indices_to_fetch:
+            logger.info(f"  Fetching {index}...")
+            eod_result = await self.fetch_eod_data(index)
+            results[f"eod_{index}"] = eod_result
+            await asyncio.sleep(0.3)
+        
+        # 3. Fetch cement sector companies
+        logger.info("Step 3/4: Fetching cement sector companies...")
+        symbols_data = symbols_result.data
+        cement_companies = [
+            s for s in symbols_data 
+            if s.get("sectorName") == "CEMENT" and not s.get("isDebt", False)
         ]
         
-        for name, task in tasks:
-            result = await task
-            results[name] = result
-            
-            # Small delay between requests
-            await asyncio.sleep(0.5)
+        logger.info(f"Found {len(cement_companies)} cement companies")
+        
+        # Fetch data for top 5 cement companies
+        for company in cement_companies[:5]:
+            symbol = company["symbol"]
+            logger.info(f"  Fetching {symbol} ({company['name']})...")
+            eod_result = await self.fetch_eod_data(symbol)
+            results[f"eod_{symbol}"] = eod_result
+            await asyncio.sleep(0.3)
+        
+        # 4. Fetch intraday data for KSE100
+        logger.info("Step 4/4: Fetching intraday data for KSE100...")
+        intraday_result = await self.fetch_intraday_data("KSE100")
+        results["intraday_KSE100"] = intraday_result
         
         # Save summary
         summary = {
@@ -466,14 +627,19 @@ class PSXCrawler:
             "results": {
                 name: {
                     "success": result.success,
-                    "error": result.error
+                    "error": result.error,
+                    "metadata": result.metadata if result.success else None
                 }
                 for name, result in results.items()
             }
         }
         self.save_json(summary, "raw/crawl_summary.json")
         
-        logger.info("Comprehensive crawl completed")
+        # Count successes
+        successful = sum(1 for r in results.values() if r.success)
+        total = len(results)
+        
+        logger.info(f"Comprehensive crawl completed: {successful}/{total} successful")
         return results
     
     def save_json(self, data: Any, filename: str):
